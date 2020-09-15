@@ -1,0 +1,31 @@
+PostgresQL db
+
+table "teachers"
+- id PRIMARY KEY
+- name (required)
+- username (required)
+- password (required)
+
+table "students"
+- id PRIMARY KEY
+- name (required)
+- password (required)
+- teacher_id FOREIGN KEY
+
+table "assignments"
+- id PRIMARY KEY
+- title (required)
+- body (required)
+- teacher_id FOREIGN KEY
+
+table "students_assignments"
+- id PRIMARY KEY
+- student_id FOREIGN KEY
+- assignment_id FOREIGN KEY
+- completed Default=False (boolean)
+
+
+Possible additions:
+    Another relational table for teachers_students to add multiple "classes" or "subjects".
+    Changing name of relational table for students_assignements to "grades" and adding integer column for "grade"
+
