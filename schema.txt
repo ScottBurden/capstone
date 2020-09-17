@@ -23,9 +23,5 @@ table "students_assignments"
 - student_id FOREIGN KEY
 - assignment_id FOREIGN KEY
 - completed Default=False (boolean)
-
-
-Possible additions:
-    Another relational table for teachers_students to add multiple "classes" or "subjects".
-    Changing name of relational table for students_assignements to "grades" and adding integer column for "grade"
+- grade Default=0
 
