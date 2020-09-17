@@ -25,19 +25,17 @@ s9 = Student.seed_db(name="John K", username="johnk", password="psswrd", teacher
 db.session.add_all([s0, s1, s2, s3, s4, s5, s6, s7, s8, s9])
 db.session.commit()
 
+#PoemsDB URL https://poetrydb.org/
+#To get 10 poems by author Robert Burns,
+#https://poetrydb.org/author,poemcount/Robert%20Burns;10/title,lines
+burns = requests.get("https://poetrydb.org/author,poemcount/Robert%20Burns;10/title,lines")
+hw = burns.json()
+all_hw = []
 
-a0 = Assignment(title="hw 1", body="hw", teacher_id=1)
-a1 = Assignment(title="hw 2", body="hw", teacher_id=1)
-a2 = Assignment(title="hw 3", body="hw", teacher_id=1)
-a3 = Assignment(title="hw 4", body="hw", teacher_id=1)
-a4 = Assignment(title="hw 5", body="hw", teacher_id=1)
-a5 = Assignment(title="hw 6", body="hw", teacher_id=1)
-a6 = Assignment(title="hw 7", body="hw", teacher_id=1)
-a7 = Assignment(title="hw 8", body="hw", teacher_id=1)
-a8 = Assignment(title="hw 9", body="hw", teacher_id=1)
-a9 = Assignment(title="final", body="hw", teacher_id=1)
-
-db.session.add_all([a0, a1, a2, a3, a4, a5, a6, a7, a8, a9])
+for poem in hw:
+    one = Assignment(title=poem.title, body=poem.lines, teacher_id=1)
+    all_hw.append(one)
+db.session.add_all(all_hw)
 db.session.commit()
 
 student = Student.query.all()
