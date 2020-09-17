@@ -24,7 +24,17 @@ class Teacher(db.Model):
         if teacher and bcrypt.check_password_hash(teacher.password, password):
             return teacher
         else:
-            return False
+            return False    
+    
+    #only used for seeding db
+    @classmethod
+    def seed_db(cls, username, password, name):
+        """Bcrypt hashes password to be stored in db
+        only using to seed database"""
+        hashed = bcrypt.generate_password_hash(password)
+        hashed_pw = hashed.decode("utf8")
+        teacher = Teacher(username=username, password=hashed_pw, name=name)
+        return teacher
 
 class Student(db.Model):
     __tablename__="students"
@@ -44,6 +54,17 @@ class Student(db.Model):
             return student
         else:
             return False
+    
+    #only used for seeding db
+    @classmethod
+    def seed_db(cls, username, password, name, teacher_id):
+        """Bcrypt hashes password to be stored in db
+        only using to seed database"""
+        hashed = bcrypt.generate_password_hash(password)
+        hashed_pw = hashed.decode("utf8")
+        student = Student(username=username, password=hashed_pw, name=name, teacher_id=teacher_id)
+        return student
+    
         
 class Assignment(db.Model):
     __tablename__="assignments"
