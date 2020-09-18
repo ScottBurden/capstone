@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+Assignments | Students
+{% endblock %}
+{% block content %}
+{% if "username" in session %}
+<a class="btn btn-outline-danger btn-block" style="margin:0" href="/logout-teacher" style="margin:0">Logout</a>
+<a class="btn btn-outline-warning btn-block" href="/teacher/{{teacher.id}}/home" style="margin:0">Return home</a>
+{% endif %}
+{% if student %}
+<h1>Assignments</h1>
+<h3>ID #{{student.id}} : {{student.name}}</h3>
+<ul>
+  {% for title, id in assignments %}
+  <li><a class="btn btn-outline-dark" href="/teacher/{{teacher.id}}/assignment/{{id}}">{{id}} - Title: {{title}}</a>
+  </li>
+  <div>
+      Completed?
+  <a class="{% for task in completed %}
+    {% if id == task.assignment_id %}
+    {% if student.id == task.student_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}" href="/teacher/{{teacher.id}}/assignment/{{id}}" style="margin:0"></a>
+    {% for task in completed %}
+    {% if id == task.assignment_id %}
+    {{task.completed}}
+    {% endif %}
+    {% endfor %}
+</div>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if assignment %}
+<h1>Students</h1>
+<h3>{{assignment.id}} | {{assignment.title}}</h3>
+<ul>
+  {% for name, id in students %}
+  <li><a class="btn btn-outline-dark" href="/teacher/{{teacher.id}}/student/{{id}}">{{id}} - STUDENT: {{name}}</a>
+  </li>
+  <div>Completed?
+    <a class="{% for task in completed %}
+	{% if id == task.student_id %}
+    {% if assignment.id == task.assignment_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}" href="">
+    </a>
+    {% for task in completed %}
+    {% if id == task.student_id %}
+    {{task.completed}}
+    {% endif %}
+    {% endfor %}
+</div>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

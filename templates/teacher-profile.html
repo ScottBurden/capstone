@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Teacher View | Library of Progress OR Classroom Cubby
+{% endblock %}
+{% block content %}
+<div>
+  <a class="btn btn-danger btn-block" style="margin:0" href="/logout-teacher">Logout</a>
+  <h1 class="text-center" style="margin:0; height:1.5em">Classroom for {{teacher.name}}</h1>
+  {% if "username" in session %}
+{% endif %}
+</div>
+<h4 class="text-center">Displaying all students and their assignments respectively. Completed assignments display as green, uncompleted as blue</h4>
+<ul>
+  {% for hw in assignments %}
+  <li>{{hw.title}}
+  </li>
+  {% endfor %}
+</ul>
+  {% for student in students %}
+  <a class="btn btn-dark btn-block" href="/teacher/{{teacher.id}}/student/{{student.id}}">{{student.name}}</a>
+    {% for hw in work %}
+    <a class="{% for task in completed %}
+	{% if student.id == task.student_id %}
+    {% if hw.id == task.assignment_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}" href="/teacher/{{teacher.id}}/assignment/{{hw.id}}" style="margin:0">{{hw.title}}</a>
+    {% endfor %}
+  {% endfor %}
+{% endblock %}

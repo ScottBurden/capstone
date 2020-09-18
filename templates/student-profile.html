@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+Library of Progress OR Classroom Cubby
+{% endblock %}
+{% block content %}
+<div>
+  {% if "username" in session %}
+<a class="btn btn-danger" style="display:block" href="/logout-student">Logout</a>
+{% endif %}
+</div>
+<h1>Here is a lits of your assignments, they will turn green when completed</h1>
+<h1>{{student.name}}</h1>
+<ul>
+  {% for hw in work %}
+  <li><a class="{% for task in completed %}
+    {% if hw.id == task.assignment_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endfor %}" href="/{{student.id}}/hw/{{hw.id}}">{{hw.title}}</a>
+  </li>
+  <div>Completed?
+    {% for task in completed %}
+    {% if hw.id == task.assignment_id %}
+    {{task.completed}}
+    {% endif %}
+    {% endfor %}
+</div>
+  {% endfor %}
+
+{% endblock %}

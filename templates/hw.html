@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+Assignments | Students
+{% endblock %}
+{% block content %}
+{% if "username" in session %}
+<a class="btn btn-danger btn-block text-lg" href="/logout-student" style="margin:0">Logout</a>
+<a class="btn btn-warning btn-block text-xl" href="/{{student.id}}/home" style="margin:0">See all assignments</a>
+{% endif %}
+<section class="container">
+  <h1 class="text-center">Assignment | {{hw.title}}</h1>
+  {{ hw.body }}
+</section>
+<form method="POST">
+<button class="btn btn-primary btn-block">Complete assignment</button>
+</form>
+{% endblock %}

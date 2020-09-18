@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+Welcome to the Library of Progress OR Classroom Cubby
+{% endblock %}
+{% block content %}
+<h1>NOW THIS IS A TITLE</h1>
+<p>Something about selecting which login page you want</p>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the Library of Progress OR Classroom Cubby</h1>
+  <p class="lead">This is where I would be more than happy to tell you a little more about our mission, how we can add value to you, your teachers, your students, your parents, and, further more, the whole world.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+</div>
+
+<div style="height:500px;">
+<div class="row" style="max-height:100%;">
+  <div class="col-sm-6" style="max-height:100%;">
+    <div class="card bg-primary mb-3" style="max-width: auto; max-height:100%;">
+      <a class="btn" href="/login-student">
+	<div class="card-header text-white" style="font-size:50px">Log in</div>
+	<div class="card-body" style="height:500px;">
+	  <h5 class="card-title" style="font-size:75px">Students</h5>
+	  <p class="card-text">Ready to show them what ya got?</p>
+        </div></a>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card bg-info mb-3" style="max-width: auto; max-height: 100%;">
+        <a class="btn" href="/login-teacher">
+	<div class="card-header text-white" style="font-size:50px">Log in</div>
+	<div class="card-body" style="height:500px;">
+	  <h5 class="card-title" style="font-size:75px">Teachers</h5>
+	  <p class="card-text">You have a special place in our heart, and a special place to log in here!</p>
+	</div></a>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}
