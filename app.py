@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 
@@ -7,7 +9,7 @@ from models import Student, Teacher, Assignment, StudentAssignment, db, connect_
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///capstone_school'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = "SECRET"
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY","SECRET")
 #ADD FILE TO IMPORT SECRET?
 
 
