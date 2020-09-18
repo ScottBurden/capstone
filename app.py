@@ -7,7 +7,7 @@ from forms import LoginForm
 from models import Student, Teacher, Assignment, StudentAssignment, db, connect_db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///capstone_school'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", 'postgresql:///capstone_school')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY","SECRET")
 #ADD FILE TO IMPORT SECRET?
