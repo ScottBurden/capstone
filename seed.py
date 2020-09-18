@@ -34,7 +34,7 @@ hw = burns.json()
 all_hw = []
 
 for poem in hw:
-    one = Assignment(title=poem.title, body=poem.lines, teacher_id=1)
+    one = Assignment(title=poem['title'], body=poem['lines'], teacher_id=1)
     all_hw.append(one)
 db.session.add_all(all_hw)
 db.session.commit()
