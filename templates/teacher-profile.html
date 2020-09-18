@@ -19,18 +19,18 @@ Teacher View | Library of Progress OR Classroom Cubby
   {% for student in students %}
   <a class="btn btn-dark btn-block" href="/teacher/{{teacher.id}}/student/{{student.id}}">{{student.name}}</a>
     {% for hw in work %}
-    <a 
+    <a class="
     {% for task in completed %}
 	  {% if student.id == task.student_id %}
     {% if hw.id == task.assignment_id %}
     {% if task.completed %}
-    class="btn btn-success"
+    btn btn-success
     {% else %}
-    class="btn btn-info"
+    btn btn-info
     {% endif %}
     {% endif %}
     {% endif %}
-    {% endfor %} href="/teacher/{{teacher.id}}/assignment/{{hw.id}}" style="margin:0">{{hw.title}}</a>
+    {% endfor %}" href="/teacher/{{teacher.id}}/assignment/{{hw.id}}" style="margin:0">{{hw.title}}</a>
     {% endfor %}
   {% endfor %}
 {% endblock %}
