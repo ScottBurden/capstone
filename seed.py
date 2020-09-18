@@ -1,5 +1,6 @@
 from app import app
 from models import db, Teacher, Student, Assignment, StudentAssignment
+import requests
 
 db.drop_all()
 db.create_all()
