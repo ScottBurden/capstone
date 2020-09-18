@@ -172,7 +172,7 @@ def teacher_profile_page(t_id):
         teacher = Teacher.query.get_or_404(t_id)
         students = Student.query.filter_by(teacher_id=t_id).all()
         work = Assignment.query.filter_by(teacher_id=t_id).all()
-        completed = StudentAssignment.query.filter_by(student_id=student.id).all()
+        completed = StudentAssignment.query.all()
     
         return render_template("teacher-profile.html", teacher=teacher, students=students, work=work, completed=completed)
     
