@@ -143,7 +143,7 @@ def authenticate_teacher():
         #currently not authentication teacher login for development
         usr = form.username.data
         pwd = form.password.data
-        teacher = Teacher.query.get(1).first()
+        teacher = Teacher.query.get(1)
         session["username"]=teacher.username
         
         return redirect(f"/teacher/{teacher.id}/home")
