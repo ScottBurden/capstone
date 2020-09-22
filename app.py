@@ -66,10 +66,10 @@ def authenticate_student():
 
 @app.route("/<int:s_id>/home", methods=["GET"])
 def student_profile_page(s_id):
+    student = Student.query.get_or_404(s_id)
 
-    if "username" in session:
+    if student.username in session["username"]:
         work = Assignment.query.all()
-        student = Student.query.get_or_404(s_id)
         completed = StudentAssignment.query.filter_by(student_id=student.id).all()
         #ADD handle for student to complete hw POST to ("/<int:s_id>/hw/<int:a_id>")
     
@@ -83,9 +83,9 @@ def student_profile_page(s_id):
 @app.route("/<int:s_id>/hw/<int:a_id>", methods=["GET"])
 def show_assignment(s_id,a_id):
     """Display an individual assignment for the current student in session"""
+    student = Student.query.get_or_404(s_id)
 
-    if "username" in session:
-        student = Student.query.get_or_404(s_id)
+    if student.username in session["username"]:
         hw = Assignment.query.get_or_404(a_id)
 
         return render_template("hw.html", hw=hw, student=student)
@@ -98,9 +98,9 @@ def show_assignment(s_id,a_id):
 @app.route("/<int:s_id>/hw/<int:a_id>", methods=["POST"])
 def finish_assignment(s_id,a_id):
     """Update "completed" boolean in students_assignments table for row with both student id and assignment id"""
+    student = Student.query.get_or_404(s_id)
 
-    if "username" in session:
-        student = Student.query.get_or_404(s_id)
+    if student.username in session["username"]:
         assign = Assignment.query.get_or_404(a_id)
         complete_assignment = StudentAssignment.query.filter_by(student_id=student.id, assignment_id=assign.id).first()
         complete_assignment.completed=True if not complete_assignment.completed else False
@@ -143,7 +143,7 @@ def authenticate_teacher():
         #currently not authentication teacher login for development
         usr = form.username.data
         pwd = form.password.data
-        teacher = Teacher.query.filter_by(name="burden").first()
+        teacher = Teacher.query.get(1).first()
         session["username"]=teacher.username
         
         return redirect(f"/teacher/{teacher.id}/home")
@@ -166,10 +166,10 @@ def authenticate_teacher():
 @app.route("/teacher/<int:t_id>/home")
 def teacher_profile_page(t_id):
     """Shows all students and all assignments"""
+    teacher = Teacher.query.get_or_404(t_id)
 
     #ADD condition to query that separates completed?
-    if "username" in session:
-        teacher = Teacher.query.get_or_404(t_id)
+    if teacher.username in session["username"]:
         students = Student.query.filter_by(teacher_id=t_id).all()
         work = Assignment.query.filter_by(teacher_id=t_id).all()
         completed = StudentAssignment.query.all()
@@ -184,9 +184,9 @@ def teacher_profile_page(t_id):
 @app.route("/teacher/<int:t_id>/student/<int:s_id>")
 def show_all_work(t_id, s_id):
     """Display all assignments with completion status for one student"""
+    teacher = Teacher.query.get_or_404(t_id)
 
-    if "username" in session:
-        teacher = Teacher.query.get_or_404(t_id)
+    if teacher.username in session["username"]:
         student = Student.query.get_or_404(s_id)
         assignments = db.session.query(Assignment.title, Assignment.id).all()
         completed = StudentAssignment.query.filter_by(student_id=student.id).all()
@@ -200,9 +200,9 @@ def show_all_work(t_id, s_id):
 @app.route("/teacher/<int:t_id>/assignment/<int:a_id>")
 def show_all_students(t_id, a_id):
     """Display all students and their completion status for one assignment"""
+    teacher = Teacher.query.get_or_404(t_id)
 
-    if "username" in session:
-        teacher = Teacher.query.get_or_404(t_id)
+    if teacher.username in session["username"]:
         assignment = Assignment.query.get_or_404(a_id)
         students = db.session.query(Student.name, Student.id).all()
         completed = StudentAssignment.query.filter_by(assignment_id=assignment.id).all()
