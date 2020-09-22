@@ -25,7 +25,7 @@ Library of Progress OR Classroom Cubby
     {% for task in completed %}
     {% if task.completed == True %}
     {% if hw.id == task.assignment_id %}
-    <span><b>Current grade: {task.grade}</b></span>
+    <span><b>Current grade: {{task.grade}}</b></span>
     {% endif %}
     {% endif %}
     {% endfor %}
