@@ -168,13 +168,14 @@ def teacher_profile_page(t_id):
     """Shows all students and all assignments"""
     teacher = Teacher.query.get_or_404(t_id)
 
-    #ADD condition to query that separates completed?
     if teacher.username in session["username"]:
+
+        grade_form = GradeAssignmentForm()        
         students = Student.query.filter_by(teacher_id=t_id).all()
         work = Assignment.query.filter_by(teacher_id=t_id).all()
         completed = StudentAssignment.query.all()
     
-        return render_template("teacher-profile.html", teacher=teacher, students=students, work=work, completed=completed)
+        return render_template("teacher-profile.html", teacher=teacher, students=students, work=work, completed=completed, grade_form=grade_form)
     
     else:
         flash("You must be logged in to do that", "danger")
@@ -187,11 +188,13 @@ def show_all_work(t_id, s_id):
     teacher = Teacher.query.get_or_404(t_id)
 
     if teacher.username in session["username"]:
+
+        grade_form = GradeAssignmentForm()
         student = Student.query.get_or_404(s_id)
         assignments = db.session.query(Assignment.title, Assignment.id).all()
         completed = StudentAssignment.query.filter_by(student_id=student.id).all()
         
-        return render_template("show-all.html", teacher=teacher, student=student, assignments=assignments, completed=completed)
+        return render_template("show-all.html", teacher=teacher, student=student, assignments=assignments, completed=completed, grade_form=grade_form)
 
     else:
         flash("You must be logged in to do that", "danger")
@@ -203,12 +206,32 @@ def show_all_students(t_id, a_id):
     teacher = Teacher.query.get_or_404(t_id)
 
     if teacher.username in session["username"]:
+
+        grade_form = GradeAssignmentForm()
         assignment = Assignment.query.get_or_404(a_id)
         students = db.session.query(Student.name, Student.id).all()
         completed = StudentAssignment.query.filter_by(assignment_id=assignment.id).all()
         
-        return render_template("show-all.html", teacher=teacher, assignment=assignment, students=students, completed=completed)
+        return render_template("show-all.html", teacher=teacher, assignment=assignment, students=students, completed=completed, grade_from=grade_form)
 
     else:
         flash("You must be logged in to do that", "danger")
         return redirect("/login-teacher")
+
+@app.route("/teacher/<int:t_id>/grade/<int:sa_id>", methods=["POST"])
+def grade_assignment(t_id,sa_id):
+    """Receive grades submitted in GradeAssignmentForm, updated db and redirects to /home
+    """
+    form = GradeAssignmentForm()
+    student_assignment = StudentAssignment.query.get(sa_id)
+
+    if form.validate_on_submit():
+        g = int(form.grade.data)
+        student_assignment.grade = g
+        db.session.add(student_assignment)
+        db.session.commit()
+        flash("Grade updated successfully!","primary")
+        return redirect(f"/teacher/{t_id}/home")
+    else:
+        flash("Unable to save your submission, try again", "danger bg-warning")
+        return redirect(f"/teacher/{t_id}/home")
