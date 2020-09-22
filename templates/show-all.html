@@ -70,9 +70,7 @@ Assignments | Students
     {% if id == task.student_id %}
     {% if task.completed == True %}
     <div><b>Current grade: {{task.grade}}</b></div>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+ 
     <form method="POST" action="/teacher/{{teacher.id}}/grade/{{task.id}}">
       {{grade_form.hidden_tag() }}
       {% for field in grade_form if field.widget.input_type != 'hidden' %}
@@ -80,6 +78,9 @@ Assignments | Students
       {{field}}
       {% endfor %}
     </form>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
   </div>
   {% endfor %}
 </ul>
