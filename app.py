@@ -212,7 +212,7 @@ def show_all_students(t_id, a_id):
         students = db.session.query(Student.name, Student.id).all()
         completed = StudentAssignment.query.filter_by(assignment_id=assignment.id).all()
         
-        return render_template("show-all.html", teacher=teacher, assignment=assignment, students=students, completed=completed, grade_from=grade_form)
+        return render_template("show-all.html", teacher=teacher, assignment=assignment, students=students, completed=completed, grade_form=grade_form)
 
     else:
         flash("You must be logged in to do that", "danger")
