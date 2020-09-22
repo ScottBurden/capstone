@@ -29,7 +29,7 @@ Assignments | Students
     {% endfor %}" href="" style="margin:0"></a>
     {% for task in completed %}
     {% if id == task.assignment_id %}
-    {% if task.complete == True %}
+    {% if task.completed == True %}
     <div><b>Current grade: {{task.grade}}</b></div>
     <form method="POST" action="/teacher/{{teacher.id}}/grade/{{task.id}}">
       {{grade_form.hidden_tag() }}
