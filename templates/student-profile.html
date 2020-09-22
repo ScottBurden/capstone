@@ -21,14 +21,15 @@ Library of Progress OR Classroom Cubby
     {% endif %}
     {% endif %}
     {% endfor %}" href="/{{student.id}}/hw/{{hw.id}}">{{hw.title}}</a>
-  </li>
-  <div>Completed?
+
     {% for task in completed %}
+    {% if task.completed == True %}
     {% if hw.id == task.assignment_id %}
-    {{task.completed}}
+    <span><b>Current grade: {task.grade}</b></span>
+    {% endif %}
     {% endif %}
     {% endfor %}
-</div>
+</li>
   {% endfor %}
 
 {% endblock %}

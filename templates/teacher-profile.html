@@ -3,13 +3,19 @@
 Teacher View | Library of Progress OR Classroom Cubby
 {% endblock %}
 {% block content %}
+{% if teacher.username in session["username"] %}
 <div>
   <a class="btn btn-danger btn-block" style="margin:0" href="/logout-teacher">Logout</a>
   <h1 class="text-center" style="margin:0; height:1.5em">Classroom for {{teacher.name}}</h1>
-  {% if "username" in session %}
-{% endif %}
 </div>
+{% endif %}
+
 <h4 class="text-center">Displaying all students and their assignments respectively. Completed assignments display as green, uncompleted as blue</h4>
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% for cat, msg in messages %}
+<h6 class="text-{{cat}}" style="height:25px"><b>{{msg}}</b></h6>
+{% endfor %}
+{% endwith %}
 <ul>
   {% for hw in assignments %}
   <li>{{hw.title}}
