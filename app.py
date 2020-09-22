@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from forms import LoginForm
+from forms import LoginForm, GradeAssignmentForm
 from models import Student, Teacher, Assignment, StudentAssignment, db, connect_db
 
 app = Flask(__name__)
