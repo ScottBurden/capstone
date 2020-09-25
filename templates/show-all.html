@@ -48,7 +48,7 @@ Assignments | Students
 
 {% if assignment %}
 <h1>Students</h1>
-<h3>{{assignment.id}} | {{assignment.title}}</h3>
+<h3>Assignment number: {{assignment.id}} | {{assignment.title}}</h3>
 <ul>
   {% for name, id in students %}
   <li><a class="btn btn-outline-dark" href="/teacher/{{teacher.id}}/student/{{id}}">{{id}} - STUDENT: {{name}}</a>

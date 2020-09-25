@@ -3,14 +3,9 @@
 Login
 {% endblock %}
 {% block content %}
-<p>
-{form}
-</p>
-<hr></hr>
 <div class="container bg-light text-center">
-<h1>Login to the Library of Progress OR Classroom Cubby</h1>
+<h1>Login to your Classroom Cubby</h1>
 <hr></hr>
-  <p>We're going to need a picture of Cubby the Classroom mascot around here</p>
   {% for category, msg in get_flashed_messages(with_categories=true) %}
   <p class="alert alert-{{ category }}">{{ msg }}</p>
   {% endfor %}
@@ -19,8 +14,8 @@ Login
     {{ form.hidden_tag() }}
     {% for field in form if field.widget.input_type != "hidden" %}
     <div class="form-group">
-      <span class="" >{{field.label}}</span>
-      <span class="" >{{field}}</span>
+      {{field.label}}
+      {{field(class_="form-control")}}
     {% for error in field.errors %}
     {{ error }}
     {% endfor %}
