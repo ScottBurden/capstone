@@ -170,9 +170,9 @@ def teacher_profile_page(t_id):
 
     if teacher.username in session["username"]:
 
-        grade_form = GradeAssignmentForm()        
         students = Student.query.filter_by(teacher_id=t_id).all()
         work = Assignment.query.filter_by(teacher_id=t_id).all()
+        completed = StudentAssignment.query.all()
     
         return render_template("teacher-profile.html", teacher=teacher, students=students, work=work, completed=completed)
     
