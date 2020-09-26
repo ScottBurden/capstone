@@ -234,3 +234,16 @@ def grade_assignment(t_id,sa_id):
     else:
         flash("Unable to save your submission, try again", "danger bg-warning")
         return redirect(f"/teacher/{t_id}/home")
+
+#******************************DEMO ROUTE********************************
+@app.route("/demo")
+def show_preview():
+    student = Student.query.get_or_404(9)
+    work = Assignment.query.all()
+    completed = StudentAssignment.query.filter_by(student_id=student.id).all()
+    teacher = Teacher.query.get_or_404(1)
+    works = Assignment.query.filter_by(teacher_id=1).all()
+    t_completed = StudentAssignment.query.all()
+    students = Student.query.filter(Student.id>8).all()
+    
+    return render_template("demo.html", student=student, work=work,completed=completed, grade_form=grade_form, teacher=teacher, works=works, t_completed=t_completed, students=students)

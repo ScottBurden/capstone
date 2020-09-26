@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}
+Hope you like our demo page
+{% endblock %}
+{% block content %}
+<h1 class="text-center" style="height:80px">This is a composite of the profiles for a teacher and a student</h1>
+<a class="text-center btn btn-lg btn-warning" href="/" >Return to main page</a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-white">
+      <h3 class="text-center">Student Profile</h3>
+       <h1 style="display:inline">Click the blue assignments to complete them</h1>
+<h3>Student 1</h3>
+<ul>
+  {% for hw in work %}
+  <li><a class="{% for task in completed %}
+    {% if hw.id == task.assignment_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endfor %}" id="hw-{{hw.id}}">{{hw.title}}</a>
+
+    {% for task in completed %}
+    {% if task.completed == True %}
+    {% if hw.id == task.assignment_id %}
+  <div><b>Current grade: {{task.grade}}</b></div>        
+	{% endif %}
+  {% endif %}
+  {% endfor %}
+  </li>
+
+  {% endfor %}
+      
+    </div>
+
+    <div class="col bg-light">
+      <h3 class="text-center bg-info">Teacher Profile</h3>
+      <h1>As students complete assignments, they will turn green and are ready to be graded!</h1>
+  {% for student in students %}
+  <a class="btn btn-dark btn-block">
+    {% if student.id == 9}
+    Student 1
+    {% endif %}
+    {% if student.id == 10}
+    Student2
+    {% endif %}
+  </a>
+    {% for hw in works %}
+    <a class="{% for task in t_completed %}
+	{% if student.id == task.student_id %}
+    {% if hw.id == task.assignment_id %}
+    {% if task.completed %}
+    btn btn-success
+    {% else %}
+    btn btn-info
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}" style="margin:0"
+       {% if student.id == 9 %}
+       id="{{hw.id}}"
+       {% endif %}>{{hw.title}}</a>
+    {% endfor %}
+  {% endfor %}
+
+    </div>
+  </div>
+  <div>
+    <a style="justify-content:right" class="text-center btn btn-lg btn-warning" href="/" >Return to main page</a>
+    <script src="/static/demo.js"></script>
+{% endblock %}

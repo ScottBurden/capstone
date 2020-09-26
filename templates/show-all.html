@@ -34,7 +34,7 @@ Assignments | Students
     <form method="POST" action="/teacher/{{teacher.id}}/grade/{{task.id}}">
       {{grade_form.hidden_tag() }}
       {% for field in grade_form if field.widget.input_type != 'hidden' %}
-      {{field.label}}
+      <a href="" class="update btn btn-success">Grade</a>
       {{field}}
       {% endfor %}
     </form>
@@ -74,7 +74,7 @@ Assignments | Students
     <form method="POST" action="/teacher/{{teacher.id}}/grade/{{task.id}}">
       {{grade_form.hidden_tag() }}
       {% for field in grade_form if field.widget.input_type != 'hidden' %}
-      {{field.label}}
+      <a href="" class="update btn btn-success">Grade</a>
       {{field}}
       {% endfor %}
     </form>
