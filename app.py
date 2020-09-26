@@ -246,4 +246,4 @@ def show_preview():
     t_completed = StudentAssignment.query.all()
     students = Student.query.filter(Student.id>8).all()
     
-    return render_template("demo.html", student=student, work=work,completed=completed, grade_form=grade_form, teacher=teacher, works=works, t_completed=t_completed, students=students)
+    return render_template("demo.html", student=student, work=work,completed=completed, teacher=teacher, works=works, t_completed=t_completed, students=students)
