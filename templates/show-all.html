@@ -36,6 +36,7 @@ Assignments | Students
       {% for field in grade_form if field.widget.input_type != 'hidden' %}
       <a href="" class="update btn btn-success">Grade</a>
       {{field}}
+      <button id="grade" class="btn btn-outline-dark">Save</button>
       {% endfor %}
     </form>
     {% endif %}
