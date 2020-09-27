@@ -10,7 +10,7 @@ if (updateGrade){
             e.preventDefault();
             let form = e.target.parentElement;
             let els = form.children;
-            for (let el in els){
+            for (let el of els){
                 el.style.visibility="visible";
                 e.target.nextElementSibling.focus();
             }
