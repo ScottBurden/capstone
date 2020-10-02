@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", 'postgresql:///capstone_school')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY","SECRET")
-#ADD FILE TO IMPORT SECRET?
+#TODO FILE TO IMPORT SECRET?
 
 
 #if you want to turn off debug
@@ -71,7 +71,7 @@ def student_profile_page(s_id):
     if student.username in session["username"]:
         work = Assignment.query.all()
         completed = StudentAssignment.query.filter_by(student_id=student.id).all()
-        #ADD handle for student to complete hw POST to ("/<int:s_id>/hw/<int:a_id>")
+        #TODO handle for student to complete hw POST to ("/<int:s_id>/hw/<int:a_id>")
     
         return render_template("student-profile.html", work=work, student=student, completed=completed)
     
@@ -140,24 +140,17 @@ def authenticate_teacher():
     form = LoginForm()
 
     if form.validate_on_submit():
-        #currently not authentication teacher login for development
         usr = form.username.data
-        pwd = form.password.data
-        teacher = Teacher.query.get(1)
-        session["username"]=teacher.username
+        pwd = form.password.data   
+        teacher = Teacher.authenticate(usr, pwd)
         
-        return redirect(f"/teacher/{teacher.id}/home")
-    
-    #HERE is the code for authenticating teacher login
-        #teacher = Teacher.authenticate(usr, pwd)
+        if teacher:
+           session["username"]=teacher.username
+           return redirect(f"/teacher/{teacher.id}/home")
         
-        #if teacher:
-        #    session["username"]=teacher.username
-        #    return redirect(f"/teacher/{teacher.id}/home")
-        
-        #else:
-        #    form.username.errors = ["Login failed, please check your username and password"]
-        #    return redirect("/login-teacher")
+        else:
+           form.username.errors = ["Login failed, please check your username and password"]
+           return redirect("/login-teacher")
 
     else:
         flash("Please enter your username and password", "danger")
