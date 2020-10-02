@@ -1,5 +1,5 @@
 # Classroom Cubby
-**where students and teachers come together remotely** - [Check out the demo page!](https://classroom-cubby.herokuapp.com/demo)
+**where students and teachers come together remotely** - [check out the demo page!](https://classroom-cubby.herokuapp.com/demo)
 
 This platform is designed for teachers to assign a class of students work that can be completed at their own pace. 
 
