@@ -1,4 +1,4 @@
-#Classroom Cubby
+# Classroom Cubby
 **where students and teachers come together remotely**
 
 [Check out the demo page!](https://classroom-cubby.herokuapp.com/demo)
