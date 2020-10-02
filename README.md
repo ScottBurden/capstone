@@ -1,5 +1,7 @@
-<h1>Classroom Cubby</h1>
-** where students and teachers come together remotely ** https://classroom-cubby.herokuapp.com/
+#Classroom Cubby
+**where students and teachers come together remotely**
+
+[Check out the demo page!](https://classroom-cubby.herokuapp.com/demo)
 
 This platform is designed for teachers to assign a class of students work that can be completed at their own pace. 
 
@@ -14,10 +16,15 @@ The Student has a secure login to protect their profile, while additional author
 For this set up, assignments were requested from an API for poems [PoetryDB](https://poetrydb.org/index.html)
 
 ### Technology stack:
-database - PostgresQL.
-server - python Flask, also deployed on Heroku.
-Code includes Jinja templates, WTForms to prevent cross site request forgery, Bcrypt for authentication and secure storage of hashed passwords, no plaintext.
-SQLAlchemy for managing database from Flask.
-CSS Bootstrap.
+database - PostgresQL
+
+server - python Flask, also deployed on Heroku
+
+Code includes Jinja templates, WTForms to prevent cross site request forgery, Bcrypt for authentication and secure storage of hashed passwords, no plaintext
+
+SQLAlchemy for managing database from Flask
+
+CSS Bootstrap
+
 
 Testing coverage includes db models, routes, view functions, and authorization.
