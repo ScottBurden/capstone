@@ -1,10 +1,10 @@
 const updateGrade = document.getElementsByClassName("update")
 const loginForm = document.getElementById("username")
 
-if (loginForm){
+if (loginForm) {
     loginForm.focus();
 }
-if (updateGrade){
+if (updateGrade) {
     for (let grade of updateGrade){
         grade.addEventListener("click", (e) => {
             e.preventDefault();
