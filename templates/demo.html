@@ -4,14 +4,16 @@ Hope you like our demo page
 {% endblock %}
 {% block content %}
 <div class="jumbotron text-center">
-  <h1 class="display-4">This is a composite of the profiles for a teacher and a student
+<h1 class="display-4">This is a composite of the profiles for a teacher and a student
   </h1>
+<p class="lead"><a href="https://github.com/ScottBurden/capstone">Click here to see the code on GitHub</a></p>
+
 </div>
 <div class="container-fluid">
   <div class="row">
     <div class="col bg-dark text-white">
       <h3 class="text-center">Student Profile</h3>
-       <h1 style="display:inline">Click the blue assignments to complete them</h1>
+       <h1 style="display:inline">Click the unfinished assignments to complete them</h1>
 <h3>Student 1</h3>
 <ul>
   {% for hw in work %}
