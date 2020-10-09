@@ -5,7 +5,7 @@ This platform is designed for teachers to assign a class of students work that c
 
 ### Teacher Profile
 
-The Teacher can see every student on their home page along with every assignment. Teachers can also filter by assignment or student to see all related info. It is updated in real time to show which students have completed which assignments. Uncompleted work displays as blue and completed work shows up green. After a student has completed an assignment on their profile, it will appear on the teacher's page immediately as completed while also adding a place to input a grade. Grades are stored, then returned to the student's profile. The Teacher's profile is protected with a username and password login, and special authorization to insure their identity.
+The Teacher can see every student on their home page along with every assignment. Teachers can also filter by assignment or student to see all related info. It is updated in real time to show which students have completed which assignments. Uncompleted work displays as an empty bubble and completed work shows up solid green. After a student has completed an assignment on their profile, it will appear on the teacher's page immediately as completed while also adding a place to input a grade. Grades are stored in the database, then returned to the student's profile. The Teacher's profile is protected with a username and password login, and special authorization to insure their identity.
 
 ### Student Profile
 
